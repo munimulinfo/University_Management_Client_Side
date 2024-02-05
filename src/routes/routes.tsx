@@ -6,25 +6,42 @@ import { routeGenaretor } from "../utils/routesGenaretor";
 import adminPaths from "./admin.route";
 import facultyPaths from "./faculty.routes";
 import studentPaths from "./user.routes";
+import ProtectRoute from "./ProtectRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <ProtectRoute>
+        <App />
+      </ProtectRoute>
+    ),
   },
   {
     path: "/admin",
-    element: <App />,
+    element: (
+      <ProtectRoute>
+        <App />
+      </ProtectRoute>
+    ),
     children: routeGenaretor(adminPaths),
   },
   {
     path: "/faculty",
-    element: <App />,
+    element: (
+      <ProtectRoute>
+        <App />
+      </ProtectRoute>
+    ),
     children: routeGenaretor(facultyPaths),
   },
   {
     path: "/student",
-    element: <App />,
+    element: (
+      <ProtectRoute>
+        <App />
+      </ProtectRoute>
+    ),
     children: routeGenaretor(studentPaths),
   },
   {

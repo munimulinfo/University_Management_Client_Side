@@ -1,14 +1,16 @@
 import { Outlet } from "react-router-dom";
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 import Sidebar from "./Sidebar";
 
 const { Header, Content } = Layout;
 const MainLayOut = () => {
   return (
-    <Layout style={{ height: "100vh" }}>
+    <Layout style={{ height: "100%" }}>
       <Sidebar></Sidebar>
       <Layout>
-        <Header style={{ padding: 0 }} />
+        <Header>
+          <Button>Logout</Button>
+        </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div
             style={{
