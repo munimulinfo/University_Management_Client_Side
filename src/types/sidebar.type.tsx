@@ -12,8 +12,10 @@ export type TUserpath = {
   children?: TUserpath[];
 };
 
-export type TSidebarItems = {
-  key: string;
-  label: ReactNode;
-  children?: TSidebarItems[];
-};
+export type TSidebarItems =
+  | {
+      key: string;
+      label: ReactNode;
+      children?: TSidebarItems[];
+    }
+  | undefined;

@@ -6,10 +6,10 @@ import { semesterOptions } from "../../../constants/semester";
 import { monthOptions } from "../../../constants/global";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { academicSemesterSchema } from "../../../schemas/academicManagement.schema";
-import { useAddAcademicSemesterMutation } from "../../../redux/featuers/admin/academicManagement.api";
-import { toast } from "sonner";
 import { TResponse } from "../../../types/global";
 import { TAcademicSemester } from "../../../types/academicManagement.type";
+import { useAddAcademicSemesterMutation } from "../../../redux/featuers/admin/academicManagement.Api";
+import { toast } from "sonner";
 
 const currentYear = new Date().getFullYear();
 const yearOptions = [0, 1, 2, 3, 4].map((number) => ({
@@ -37,7 +37,10 @@ const CreateAcademicSemester = () => {
       if (res?.error) {
         toast.error(res?.error?.data?.message, { id: toastId, duration: 1000 });
       } else {
-        toast.success(res?.data?.message, { id: toastId, duration: 1000 });
+        toast.success(res?.data?.message, {
+          id: toastId,
+          duration: 1000,
+        });
       }
     } catch (error) {
       toast.error("Something went wrong", { id: toastId });

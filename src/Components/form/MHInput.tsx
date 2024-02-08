@@ -10,9 +10,10 @@ const MHInput = ({ name, type, label }: TInputProps) => {
     <div style={{ marginBottom: "12px" }}>
       <Controller
         name={name}
-        render={({ field }) => (
+        render={({ field, fieldState: { error } }) => (
           <Form.Item label={label}>
             <Input {...field} type={type} id={name} size="large"></Input>
+            {error && <small style={{ color: "red" }}>{error.message}</small>}
           </Form.Item>
         )}
       />

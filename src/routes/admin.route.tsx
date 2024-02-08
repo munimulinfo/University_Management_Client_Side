@@ -1,7 +1,7 @@
 import AdminDashboard from "../pages/admin/AdminDashboard";
-import CreateAdmin from "../pages/admin/CreateAdmin";
-import CreateFaculty from "../pages/admin/CreateFaculty";
-import CreateStudent from "../pages/admin/CreateStudent";
+import CreateAdmin from "../pages/admin/userManageMent/CreateAdmin";
+import CreateFaculty from "../pages/admin/userManageMent/CreateFaculty";
+import CreateStudent from "../pages/admin/userManageMent/CreateStudent";
 import AcademicDepartment from "../pages/admin/academicManageMent/AcademicDepartment";
 import AcademicFaculty from "../pages/admin/academicManageMent/AcademicFaculty";
 import AcademicSemester from "../pages/admin/academicManageMent/AcademicSemester";
@@ -9,6 +9,8 @@ import CreateAcademicDepartment from "../pages/admin/academicManageMent/CreateAc
 import CreateAcademicFaculty from "../pages/admin/academicManageMent/CreateAcademicFaculty";
 import CreateAcademicSemester from "../pages/admin/academicManageMent/CreateAcademicSemester";
 import ProtectRoute from "./ProtectRoute";
+import StudentData from "../pages/admin/userManageMent/StudentData";
+import StudentDetails from "../pages/admin/userManageMent/StudentDetails";
 
 const adminPaths = [
   {
@@ -62,6 +64,15 @@ const adminPaths = [
         name: "Create Student",
         path: "create-student",
         element: <CreateStudent></CreateStudent>,
+      },
+      {
+        name: "Students",
+        path: "students-data",
+        element: <StudentData />,
+      },
+      {
+        path: "student-data/:studentId",
+        element: <StudentDetails />,
       },
       {
         name: "Create Faculty",
