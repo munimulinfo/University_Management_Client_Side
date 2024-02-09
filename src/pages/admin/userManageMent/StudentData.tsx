@@ -19,17 +19,11 @@ export type TTableData = Pick<
 const StudentData = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
   const [page, setPage] = useState(1);
-  const {
-    data: studentData,
-    isLoading,
-    isFetching,
-  } = useGetAllStudentsQuery([
+  const { data: studentData, isFetching } = useGetAllStudentsQuery([
     { name: "page", value: page },
     { name: "sort", value: "id" },
     ...params,
   ]);
-
-  console.log({ isLoading, isFetching });
 
   const metaData = studentData?.meta;
 
@@ -75,7 +69,9 @@ const StudentData = () => {
             <Link to={`/admin/student-data/${item.key}`}>
               <Button>Details</Button>
             </Link>
-            <Button>Update</Button>
+            <Link to={`/admin/student-update/${item.key}`}>
+              <Button>Update</Button>
+            </Link>
             <Button>Block</Button>
           </Space>
         );
