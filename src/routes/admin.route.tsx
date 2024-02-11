@@ -18,6 +18,7 @@ import CreateCourse from "../pages/admin/courseManageMent/createCourse";
 import Courses from "../pages/admin/courseManageMent/Courses";
 import OfferCourse from "../pages/admin/courseManageMent/OfferCourse";
 import OfferedCourse from "../pages/student/OfferedCourse";
+import UpdateAcademicSemester from "../pages/admin/academicManageMent/UpdateAcademicSemester";
 
 const adminPaths = [
   {
@@ -36,6 +37,10 @@ const adminPaths = [
         name: "Create A. Semester",
         path: "create-academic-semester",
         element: <CreateAcademicSemester />,
+      },
+      {
+        path: "update-academic-semester/:semisterId",
+        element: <UpdateAcademicSemester />,
       },
       {
         name: "Academic Semester",

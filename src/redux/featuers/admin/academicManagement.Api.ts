@@ -8,6 +8,7 @@ import baseApi from "../../api/api";
 
 const academicManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    //get All Academic Semester with Filtaring
     getAllAcademicSemester: builder.query({
       query: (args) => {
         const params = new URLSearchParams();
@@ -16,13 +17,13 @@ const academicManagementApi = baseApi.injectEndpoints({
             params.append(item.name, item.value as string);
           });
         }
-        console.log("params inside redux", params);
         return {
           url: "/academic-semesters",
           method: "GET",
           params: params,
         };
       },
+      providesTags: ["academic-semster"],
       transformResponse: (response: TResponseRedux<TAcademicSemester[]>) => {
         return {
           data: response?.data,
@@ -30,6 +31,33 @@ const academicManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    //get single Academic Semester with Specific id
+    getSingleAcademicSemester: builder.query({
+      query: (id) => {
+        return {
+          url: `/academic-semesters/${id}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["academic-semster"],
+      // transformResponse: (response: TResponseRedux<TAcademicSemester>) => {
+      //   return {
+      //     data: response?.data,
+      //   };
+      // },
+    }),
+    //update Academic SEmester
+    updateAcademicSemester: builder.mutation({
+      query: (args) => {
+        return {
+          url: `/academic-semesters/${args?.id}`,
+          method: "PATCH",
+          body: args?.data,
+        };
+      },
+      invalidatesTags: ["academic-semster"],
+    }),
+    // Add Academic Semester
     addAcademicSemester: builder.mutation({
       query: (data) => {
         return {
@@ -38,8 +66,9 @@ const academicManagementApi = baseApi.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: ["academic-semster"],
     }),
-
+    //Get All Academic Faculty
     getAcademicFaculties: builder.query({
       query: () => {
         return { url: "/academic-faculties", method: "GET" };
@@ -51,6 +80,7 @@ const academicManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    //Add Academic Faculty
     addAcademicFaculty: builder.mutation({
       query: (data) => ({
         url: "/academic-faculties/create-academic-faculty",
@@ -58,6 +88,7 @@ const academicManagementApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    //Get All Academic Depertment
     getAcademicDepartments: builder.query({
       query: () => {
         return { url: "/academic-departments", method: "GET" };
@@ -69,6 +100,7 @@ const academicManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    //Add Academic Depertment
     addAcademicDepartment: builder.mutation({
       query: (data) => ({
         url: "/academic-departments/create-academic-department",
@@ -86,4 +118,6 @@ export const {
   useGetAcademicDepartmentsQuery,
   useAddAcademicFacultyMutation,
   useGetAcademicFacultiesQuery,
+  useGetSingleAcademicSemesterQuery,
+  useUpdateAcademicSemesterMutation,
 } = academicManagementApi;

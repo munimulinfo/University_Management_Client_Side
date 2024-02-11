@@ -3,6 +3,7 @@ import { TAcademicSemester } from "../../../types/academicManagement.type";
 import { TQueryParam } from "../../../types/global";
 import { useState } from "react";
 import { useGetAllAcademicSemesterQuery } from "../../../redux/featuers/admin/academicManagement.Api";
+import { Link } from "react-router-dom";
 export type TTableData = Pick<
   TAcademicSemester,
   "name" | "year" | "startMonth" | "endMonth"
@@ -74,10 +75,12 @@ const AcademicSemester = () => {
     {
       title: "Action",
       key: "x",
-      render: () => {
+      render: (item) => {
         return (
           <div>
-            <Button>Update</Button>
+            <Link to={`/admin/update-academic-semester/${item?.key}`}>
+              <Button>Update</Button>
+            </Link>
           </div>
         );
       },

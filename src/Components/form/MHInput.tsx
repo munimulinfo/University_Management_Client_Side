@@ -5,8 +5,9 @@ type TInputProps = {
   type: string;
   label?: string;
   disabled?: boolean;
+  defaulValue?: any;
 };
-const MHInput = ({ name, type, label, disabled }: TInputProps) => {
+const MHInput = ({ name, type, label, disabled, defaulValue }: TInputProps) => {
   return (
     <div style={{ marginBottom: "12px" }}>
       <Controller
@@ -15,6 +16,7 @@ const MHInput = ({ name, type, label, disabled }: TInputProps) => {
           <Form.Item label={label}>
             <Input
               {...field}
+              defaultValue={defaulValue}
               type={type}
               id={name}
               size="large"
