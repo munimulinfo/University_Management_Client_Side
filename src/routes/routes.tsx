@@ -5,14 +5,15 @@ import Register from "../pages/Register";
 import { routeGenaretor } from "../utils/routesGenaretor";
 import adminPaths from "./admin.route";
 import facultyPaths from "./faculty.routes";
-import studentPaths from "./user.routes";
-import ProtectRoute from "./ProtectRoute";
+import studentPaths from "./student.routes";
+import ProtectRoute from "../Components/layout/ProtectRoute";
+import ChangePassword from "../pages/ChangePassword";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <ProtectRoute>
+      <ProtectRoute role="undefined">
         <App />
       </ProtectRoute>
     ),
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <ProtectRoute>
+      <ProtectRoute role="admin">
         <App />
       </ProtectRoute>
     ),
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
   {
     path: "/faculty",
     element: (
-      <ProtectRoute>
+      <ProtectRoute role="faculty">
         <App />
       </ProtectRoute>
     ),
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
   {
     path: "/student",
     element: (
-      <ProtectRoute>
+      <ProtectRoute role="student">
         <App />
       </ProtectRoute>
     ),
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/change-password",
+    element: <ChangePassword />,
   },
   {
     path: "/register",

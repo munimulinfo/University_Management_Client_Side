@@ -8,27 +8,22 @@ import AcademicSemester from "../pages/admin/academicManageMent/AcademicSemester
 import CreateAcademicDepartment from "../pages/admin/academicManageMent/CreateAcademicDepartment";
 import CreateAcademicFaculty from "../pages/admin/academicManageMent/CreateAcademicFaculty";
 import CreateAcademicSemester from "../pages/admin/academicManageMent/CreateAcademicSemester";
-import ProtectRoute from "./ProtectRoute";
 import StudentData from "../pages/admin/userManageMent/StudentData";
 import StudentDetails from "../pages/admin/userManageMent/StudentDetails";
 import StudnetUpdate from "../pages/admin/userManageMent/StudnetUpdate";
 import SemesterRegistration from "../pages/admin/courseManageMent/SemesterRegistration";
 import RegisteredSemesters from "../pages/admin/courseManageMent/RegisteredSemesters";
-import CreateCourse from "../pages/admin/courseManageMent/createCourse";
 import Courses from "../pages/admin/courseManageMent/Courses";
 import OfferCourse from "../pages/admin/courseManageMent/OfferCourse";
-import OfferedCourse from "../pages/student/OfferedCourse";
 import UpdateAcademicSemester from "../pages/admin/academicManageMent/UpdateAcademicSemester";
+import CreateCourse from "../pages/admin/courseManageMent/CreateCourse";
+import OfferedCourses from "../pages/admin/courseManageMent/OfferedCourses";
 
 const adminPaths = [
   {
     name: "Dashboard",
     path: "dashboard",
-    element: (
-      <ProtectRoute>
-        <AdminDashboard></AdminDashboard>
-      </ProtectRoute>
-    ),
+    element: <AdminDashboard></AdminDashboard>,
   },
   {
     name: "Academic Management",
@@ -133,7 +128,7 @@ const adminPaths = [
       {
         name: "Offered Courses",
         path: "offered-courses",
-        element: <OfferedCourse />,
+        element: <OfferedCourses />,
       },
     ],
   },

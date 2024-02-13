@@ -1,13 +1,13 @@
-import { jwtDecode } from "jwt-decode";
 import { useUserLoginMutation } from "../redux/featuers/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
-import { setUser } from "../redux/featuers/auth/authSlice";
+import { TUser, setUser } from "../redux/featuers/auth/authSlice";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { Button, Row } from "antd";
 import MHForm from "../Components/form/MHForm";
 import MHInput from "../Components/form/MHInput";
 import { FieldValues } from "react-hook-form";
+import { verifyToken } from "../utils/verifyToken";
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -21,17 +21,20 @@ const Login = () => {
         id: data?.userId,
       };
       const result = await userLogin(userInfo).unwrap();
-      const user = jwtDecode(result?.data?.accessToken);
+      const user = verifyToken(result?.data?.accessToken) as TUser;
       const saveUser = {
         user: user,
         token: result?.data?.accessToken,
       };
       dispatch(setUser(saveUser));
       toast.success(result?.message, { id: toastId, duration: 2000 });
-      navigate(`/${user?.role}/dashboard`);
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+      if (result.data.needsPasswordChange) {
+        navigate(`/change-password`);
+      } else {
+        navigate(`/${user?.role}/dashboard`);
+      }
+    } catch (error: any) {
+      toast.error(error?.data?.message, { id: toastId, duration: 2000 });
     }
   };
 
